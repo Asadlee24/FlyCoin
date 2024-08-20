@@ -15,6 +15,7 @@ const formatNumber = (number: number) => number.toLocaleString();
 const App: React.FC = () => {
   const [count, setCount] = useState(12345);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [tapCount, setTapCount] = useState(0); // State to track number of taps
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [showReferralLink, setShowReferralLink] = useState(false);
   const referralCode = 'YOUR_REFERRAL_CODE';
@@ -22,10 +23,12 @@ const App: React.FC = () => {
   const navigate = useNavigate();
 
   // Function to handle coin click
-  const handleCoinClick = async () => {
+  const handleCoinClick = async (event: React.MouseEvent) => {
     setIsAnimating(true);
-    setCount(count + 1);
+    const taps = event.detail; // Number of taps or clicks
+    setCount(count + taps); // Increase coin count based on number of taps
     await handleMining(); // Wait for mining to complete
+    setTapCount(taps); // Update tap count state
     setTimeout(() => {
       setIsAnimating(false);
     }, 500);
@@ -73,7 +76,7 @@ const App: React.FC = () => {
         src={centralCoinImage}
         className={`central-coin ${isAnimating ? 'bubble-effect' : ''}`}
         alt="Central Coin"
-        onClick={handleCoinClick}
+        onClick={handleCoinClick} // Handle clicks and taps
       />
       <div className="bottom-section">
         <div className="bottom-item" onClick={() => navigate('/social-task')}>
