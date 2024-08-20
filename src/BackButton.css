@@ -1,0 +1,17 @@
+/* src/BackButton.css */
+.back-button {
+  background: #4a90e2; /* Button color */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  position: absolute; /* Position it at the top left */
+  top: 20px;
+  left: 20px;
+}
+
+.back-button:hover {
+  background: #357abd; /* Darker color on hover */
+}
